@@ -1,0 +1,21 @@
+{
+  "name": "SEN0438 候选配置 待实物确认",
+  "port": "COM_REPLACE_ME",
+  "baudrate": 9600,
+  "parity": "N",
+  "stopbits": 1,
+  "unit": 1,
+  "function": 3,
+  "address": 0,
+  "count": 2,
+  "temperature_offset": 1,
+  "humidity_offset": 0,
+  "temperature_scale": 0.1,
+  "humidity_scale": 0.1,
+  "temperature_signed": true,
+  "timeout": 0.8,
+  "interval": 3.5,
+  "stale_after": 12.0,
+  "hardware_confirmed": false,
+  "source": "SEN0438 官方手册已核实寄存器顺序及倍率；实际串口 8N1 地址1 负温二补码为待实物核验的候选值"
+}

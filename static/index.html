@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- Original graduation-project UI; no third-party assets. -->
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>工业采集诊断台</title><link rel="stylesheet" href="/style.css"></head>
+<body><div class="shell">
+<header><div><div class="eyebrow">工业互联网 · 毕业设计实验平台</div><h1>工业采集诊断台</h1><p>从现场读数到排查证据，跟踪一次异常的处理过程。</p></div><div class="badges"><span id="source">读取状态中</span><span id="provider">读取模式中</span></div></header>
+<div id="notice" class="notice" role="status">正在连接本地采集服务…</div>
+<section class="metrics" aria-label="采集数据">
+<article><h2>最新温度</h2><div class="value" id="temperature">—</div><p id="temp-meta">暂无有效记录</p></article>
+<article><h2>最新湿度</h2><div class="value" id="humidity">—</div><p>保留最后读数，状态另行标注</p></article>
+<article><h2>采集状态</h2><div class="value small" id="quality">待连接</div><p id="age">—</p></article>
+<article><h2>连续有效读取</h2><div class="value" id="streak">0</div><p>恢复需要间隔复测和后台运行</p></article>
+</section>
+<div class="workspace"><section class="monitor">
+<div class="panel"><div class="panel-head"><h2>温湿度趋势</h2><span>最近 100 次采集</span></div><canvas id="chart" width="700" height="270" aria-label="温湿度历史曲线"></canvas><p class="legend"><span class="dot blue"></span>温度 ℃ <span class="dot green"></span>湿度 %RH <span>采集失败处断开曲线</span></p></div>
+<div class="panel" id="scenario-panel"><h2>受控故障实验</h2><p class="muted">仅改变模拟设备，诊断工具无法读取场景答案。</p><label for="scenario">选择模拟状态</label><div class="row"><select id="scenario"><option value="normal">正常采集</option><option value="usb_missing">USB 串口消失</option><option value="timeout">设备无响应</option><option value="parameter_mismatch">采集端参数不一致</option><option value="crc_error">响应校验失败</option><option value="invalid_value">换算结果越界</option><option value="collector_stopped">后台采集停止</option></select><button id="apply">应用场景</button></div><p id="scenario-message" class="muted" role="status"></p></div>
+<div class="panel"><h2>最近采集记录</h2><div class="table-scroll"><table><thead><tr><th>时间</th><th>结果</th><th>温度</th><th>湿度</th></tr></thead><tbody id="samples"></tbody></table></div></div>
+</section><section class="diagnosis panel"><div class="panel-head"><h2>排查助手</h2><span id="job-status">准备就绪</span></div><p class="muted">诊断结论附工具记录；没有证据时保留“不确定”。</p>
+<form id="question-form"><label for="question">描述现场问题</label><textarea id="question" rows="3" maxlength="2000">温湿度数据不更新了，请检查原因并给出下一步建议。</textarea><div class="row"><button type="submit" id="diagnose">开始排查</button><button type="button" class="secondary" id="recheck">处理后复查</button></div></form>
+<div id="answer" aria-live="polite"><div class="empty">发起一次排查，查看实际检查了什么、证据支持什么结论。</div></div>
+<h3>工具调用记录</h3><div id="trace"><p class="muted">本轮尚未执行工具。</p></div>
+<div class="row report-actions"><button id="download" class="secondary" disabled>下载本轮 JSON 报告</button></div>
+<details class="history"><summary>历史诊断记录</summary><div id="reports"></div></details>
+</section></div>
+<footer>演示结果与硬件实验分开保存 · 仅提供只读诊断 · 实际模型和真实硬件效果须分别验收</footer>
+</div><script src="/app.js"></script></body></html>
